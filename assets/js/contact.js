@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setStatus = (type, text) => {
     if (!statusBox) return;
     statusBox.textContent = text;
-    statusBox.className = ""; // limpia clases anteriores
+    statusBox.className = "";
     statusBox.classList.add("contact-status", `contact-status--${type}`);
   };
 
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       email: formData.get("email")?.toString().trim(),
       phone: formData.get("phone")?.toString().trim(),
       company: formData.get("company")?.toString().trim(),
+      city: formData.get("city")?.toString().trim(),
       message: formData.get("message")?.toString().trim(),
     };
 
