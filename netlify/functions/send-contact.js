@@ -1,5 +1,3 @@
-// netlify/functions/send-contact.js
-
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
 exports.handler = async (event) => {
@@ -33,10 +31,13 @@ exports.handler = async (event) => {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const toEmail =
-    process.env.CONTACT_TO_EMAIL || "comercializadora.xisisa@gmail.com";
-  const fromEmail =
-    process.env.CONTACT_FROM_EMAIL || "notificaciones@tudominio.com";
+
+  // AQUÍ: siempre enviamos al Gmail
+  const toEmail = "comercializadora.xisisa@gmail.com";
+
+  // AQUÍ: usamos un remitente permitido por Resend
+  // (cuando verifiques tu dominio, cambiamos esto)
+  const fromEmail = "onboarding@resend.dev";
 
   if (!apiKey) {
     console.error("RESEND_API_KEY no está definida en Netlify.");
@@ -78,7 +79,6 @@ exports.handler = async (event) => {
 
     const text = await resendResponse.text();
 
-    // Log completo a Netlify para depuración
     console.log("Resend status:", resendResponse.status);
     console.log("Resend body:", text);
 
@@ -107,4 +107,3 @@ exports.handler = async (event) => {
     };
   }
 };
-
