@@ -41,20 +41,31 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify(data),
       });
-
-      const json = await res.json();
-
+    
+      const json = await res.json().catch(() => ({}));
+    
       if (!res.ok || !json.success) {
-        console.error("Respuesta del servidor:", json);
-        setStatus("error", "Ocurrió un problema al enviar tu mensaje. Intenta de nuevo.");
+        console.error("Error desde función send-contact:", {
+          status: res.status,
+          body: json,
+        });
+        setStatus(
+          "error",
+          "Ocurrió un problema al enviar tu mensaje. Intenta de nuevo."
+        );
         return;
       }
-
-      setStatus("success", "Tu mensaje se envió correctamente. En breve nos pondremos en contacto.");
+    
+      setStatus(
+        "success",
+        "Tu mensaje se envió correctamente. En breve nos pondremos en contacto."
+      );
       form.reset();
     } catch (err) {
-      console.error(err);
-      setStatus("error", "No pudimos contactar al servidor. Intenta de nuevo más tarde.");
+      console.error("Error de red o JS:", err);
+      setStatus(
+        "error",
+        "No pudimos contactar al servidor. Intenta de nuevo más tarde."
+      );
     }
-  });
-});
+
