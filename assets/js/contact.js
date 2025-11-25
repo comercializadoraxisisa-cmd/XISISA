@@ -1,29 +1,32 @@
 // assets/js/contact.js
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#contact-form");
-  if (!form) return;
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("contact-form");
+  if (!form) {
+    console.warn("No se encontró el formulario con id 'contact-form'.");
+    return;
+  }
 
-  const statusBox = document.querySelector("#contact-status");
+  var statusBox = document.getElementById("contact-status");
 
-  const setStatus = (type, text) => {
+  function setStatus(type, text) {
     if (!statusBox) return;
     statusBox.textContent = text;
-    statusBox.className = "";
-    statusBox.classList.add("contact-status", `contact-status--${type}`);
-  };
+    statusBox.className = ""; // limpia clases anteriores
+    statusBox.classList.add("contact-status", "contact-status--" + type);
+  }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // IMPORTANTÍSIMO: evita el submit tradicional
 
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get("name")?.toString().trim(),
-      email: formData.get("email")?.toString().trim(),
-      phone: formData.get("phone")?.toString().trim(),
-      company: formData.get("company")?.toString().trim(),
-      city: formData.get("city")?.toString().trim(),
-      message: formData.get("message")?.toString().trim(),
+    var formData = new FormData(form);
+    var data = {
+      name: (formData.get("name") || "").trim(),
+      email: (formData.get("email") || "").trim(),
+      phone: (formData.get("phone") || "").trim(),
+      company: (formData.get("company") || "").trim(),
+      city: (formData.get("city") || "").trim(),
+      message: (formData.get("message") || "").trim()
     };
 
     if (!data.name || !data.email || !data.message) {
@@ -33,39 +36,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setStatus("info", "Enviando mensaje...");
 
-    try {
-      const res = await fetch("/.netlify/functions/send-contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-    
-      const json = await res.json().catch(() => ({}));
-    
-      if (!res.ok || !json.success) {
-        console.error("Error desde función send-contact:", {
-          status: res.status,
-          body: json,
+    fetch("/.netlify/functions/send-contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(function (res) {
+        return res.json().catch(function () {
+          return {};
+        }).then(function (json) {
+          return { res: res, json: json };
         });
+      })
+      .then(function (payload) {
+        var res = payload.res;
+        var json = payload.json;
+
+        if (!res.ok || !json.success) {
+          console.error("Error desde función send-contact:", {
+            status: res.status,
+            body: json
+          });
+          setStatus(
+            "error",
+            "Ocurrió un problema al enviar tu mensaje. Intenta de nuevo."
+          );
+          return;
+        }
+
+        setStatus(
+          "success",
+          "Tu mensaje se envió correctamente. En breve nos pondremos en contacto."
+        );
+        form.reset();
+      })
+      .catch(function (err) {
+        console.error("Error de red o JS:", err);
         setStatus(
           "error",
-          "Ocurrió un problema al enviar tu mensaje. Intenta de nuevo."
+          "No pudimos contactar al servidor. Intenta de nuevo más tarde."
         );
-        return;
-      }
-    
-      setStatus(
-        "success",
-        "Tu mensaje se envió correctamente. En breve nos pondremos en contacto."
-      );
-      form.reset();
-    } catch (err) {
-      console.error("Error de red o JS:", err);
-      setStatus(
-        "error",
-        "No pudimos contactar al servidor. Intenta de nuevo más tarde."
-      );
-    }
-
+      });
+  });
+});
