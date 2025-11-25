@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto | COMERCIALIZADORA XISISA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ponte en contacto con COMERCIALIZADORA XISISA y revisa las zonas en las que actualmente operamos.">
+
+  <link rel="icon" type="image/svg+xml" href="data/logo-xisisa.svg">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+  <div class="container header__content">
+    <a href="index.html" class="logo" aria-label="Ir al inicio">
+      <div class="logo__circle">
+        <img src="data/logo-xisisa.svg" alt="Logotipo de COMERCIALIZADORA XISISA" class="logo__img">
+      </div>
+      <span class="logo__text">COMERCIALIZADORA XISISA</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <input type="checkbox" id="nav-toggle" class="nav__checkbox">
+      <label for="nav-toggle" class="nav__toggle" aria-label="Abrir menú">
+        <span class="nav__line"></span>
+        <span class="nav__line"></span>
+        <span class="nav__line"></span>
+      </label>
+
+      <ul class="nav__list">
+        <li><a href="index.html#inicio" class="nav__link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav__link nav__link--subpage">Nosotros</a></li>
+        <li><a href="servicios.html" class="nav__link nav__link--subpage">Servicios</a></li>
+        <li><a href="contacto.html" class="nav__link nav__link--subpage">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- Selector idioma -->
+    <div class="lang-switcher" aria-label="Selector de idioma">
+      <a href="contacto.html" class="lang-switcher__link lang-switcher__link--active">
+        <span class="flag flag-mx" aria-hidden="true"></span>
+        <span class="lang-switcher__code">ES</span>
+      </a>
+      <a href="contact.html" class="lang-switcher__link">
+        <span class="flag flag-us" aria-hidden="true"></span>
+        <span class="lang-switcher__code">EN</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="contacto">
+  <!-- Contacto y cobertura -->
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section__header section__header--center">
+        <h1>Contacto y cobertura</h1>
+        <p>
+          Aquí puedes enviarnos una solicitud de información o cotización, y revisar las zonas en las
+          que actualmente operamos. Usamos este formulario únicamente para responder a tus mensajes.
+        </p>
+      </header>
+
+      <div class="grid grid--2cols contact-layout">
+        <!-- Formulario de contacto -->
+        <div>
+          <form id="contact-form" class="card contact-form" autocomplete="on">
+            <h2>Formulario de contacto</h2>
+
+            <div class="form-group">
+              <label for="name">Nombre completo</label>
+              <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Empresa</label>
+              <input type="text" id="company" name="company" placeholder="Nombre de tu empresa">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tucorreo@empresa.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone" placeholder="(###) ### ####">
+            </div>
+
+            <div class="form-group">
+              <label for="city">Ciudad</label>
+              <select id="city" name="city">
+                <option value="">Selecciona una opción</option>
+                <option value="Monterrey AM">Monterrey y Área Metropolitana</option>
+                <option value="Reynosa">Reynosa</option>
+                <option value="Guadalajara AM">Guadalajara y Área Metropolitana</option>
+                <option value="Otra">Otra ubicación</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" rows="5"
+                        placeholder="Describe brevemente tu necesidad" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+
+            <!-- Mensaje de estado -->
+            <div id="contact-status" class="contact-status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <!-- Datos de contacto y cobertura -->
+        <aside class="contact-sidebar">
+          <div class="card contact-info">
+            <h2>Datos de contacto</h2>
+            <p>
+              Puedes escribirnos directamente a nuestro correo general. Revisamos cada mensaje
+              y te respondemos a la brevedad posible.
+            </p>
+            <p>
+              <strong>Correo general:</strong><br>
+              <a href="mailto:comercializadora.xisisa@gmail.com">
+                comercializadora.xisisa@gmail.com
+              </a>
+            </p>
+          </div>
+
+          <div class="card contact-coverage">
+            <h2>Cobertura</h2>
+
+            <div class="coverage-card">
+              <h3>Monterrey y Área Metropolitana</h3>
+              <p>
+                Atención a parques industriales, centros de distribución, comercios y empresas de
+                servicios dentro del área metropolitana de Monterrey.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Industrial</li>
+                <li class="tag">Logística</li>
+                <li class="tag">Comercial</li>
+              </ul>
+            </div>
+
+            <div class="coverage-card">
+              <h3>Reynosa</h3>
+              <p>
+                Operación enfocada en corredores industriales y de servicios en la zona de Reynosa,
+                con énfasis en continuidad operativa y tiempos de respuesta.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Industrial</li>
+                <li class="tag">Servicios</li>
+                <li class="tag">Proyectos</li>
+              </ul>
+            </div>
+
+            <div class="coverage-card">
+              <h3>Guadalajara y Área Metropolitana</h3>
+              <p>
+                Cobertura para empresas en el corredor industrial y zonas comerciales del área
+                metropolitana de Guadalajara.
+              </p>
+              <ul class="tag-list">
+                <li class="tag">Manufactura</li>
+                <li class="tag">Servicios</li>
+                <li class="tag">Proyectos</li>
+              </ul>
+            </div>
+
+            <p class="section__note" style="margin-top:0.75rem;">
+              Si tu empresa se encuentra fuera de estas zonas, contáctanos. Analizamos cada caso
+              para evaluar la viabilidad de servicio.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer__content">
+    <p>© 2025 COMERCIALIZADORA XISISA. Todos los derechos reservados.</p>
+    <div class="footer__links">
+      <a href="nosotros.html">Nosotros</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="#aviso-privacidad">Aviso de privacidad</a>
+      <a href="#contacto">Volver arriba</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal Aviso de Privacidad -->
+<div id="aviso-privacidad" class="modal" aria-hidden="true">
+  <a href="#" class="modal__backdrop" aria-hidden="true"></a>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <a href="#" class="modal__close" aria-label="Cerrar aviso">&times;</a>
+    <h2 id="privacy-title">Aviso de privacidad</h2>
+    <div class="modal__body">
+      <p>
+        COMERCIALIZADORA XISISA, con operación en Monterrey y su Área Metropolitana, Reynosa,
+        así como Guadalajara y su Área Metropolitana, es responsable del tratamiento de los datos
+        personales que usted nos proporciona.
+      </p>
+      <p>
+        Los datos recabados a través de formularos y canales de contacto se utilizarán exclusivamente
+        para dar seguimiento a sus solicitudes de información, cotizaciones y servicios relacionados con
+        nuestra actividad comercial.
+      </p>
+      <p>
+        No compartimos su información con terceros ajenos a XISISA, salvo cuando sea necesario para
+        cumplir obligaciones legales o contractuales, o cuando un proveedor participe directamente en la
+        prestación del servicio solicitado.
+      </p>
+      <p>
+        Usted puede ejercer en cualquier momento sus derechos de acceso, rectificación, cancelación u
+        oposición (ARCO) respecto de sus datos personales contactándonos en
+        <a href="mailto:comercializadora.xisisa@gmail.com">comercializadora.xisisa@gmail.com</a>.
+      </p>
+      <p>
+        Este aviso tiene carácter ilustrativo para fines de demostración del sitio web. Para una versión
+        formal y legalmente vinculante, deberá ser revisado y validado por su área jurídica o asesor legal.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/contact.js"></script>
+</body>
+</html>
